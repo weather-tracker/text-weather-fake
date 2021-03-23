@@ -16,12 +16,15 @@
 package com.example.androiddevchallenge
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,20 +35,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyTheme() {
-                Surface() {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        MyApp()
-                        myButton1()
-                        Text(text = "")
-                        Text(text = "hourly")
-                        hourly()
-                        Text(text = "")
-                        myButton2()
-                        Text(text = "")
-                        Text(text = "daily")
-                        daily()
-
+            MyTheme {
+                Surface(color = MaterialTheme.colors.background) {
+                    Column {
+                        MainApp()
                     }
                 }
             }
@@ -57,22 +50,45 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
 
-        Column() {
-            Text(text = "Welcome to text weather!")
-            Text(text = "Here is the weather for your location")
-            Text(text = "current weather is ")
-            Text(text = "")
-            weather()
-            Text(text = "")
-        }
+    Column {
+        Text(text = "Welcome to text weather!")
+        Text(text = "Here is the weather for your current location")
+        Text(text = "")
+        Button(onClick = { }, modifier = Modifier.width(720.dp)) {
 
- }
+            Text(
+
+                text = "Current Weather"
+            )
+        }
+        Text(text = "")
+        Weather()
+        Text(text = "")
+    }
+}
 
 @Composable
-fun myButton1() {
+fun MainApp() {
+    Surface(color = MaterialTheme.colors.background) {
 
+        Column(modifier = Modifier.padding(16.dp)) {
 
-    Button(onClick = {/*Handle click action */ },) {
+            MyApp()
+            MyButton1()
+            Text(text = "")
+            Hourly()
+            Text(text = "")
+            MyButton2()
+            Text(text = "")
+            Daily()
+        }
+    }
+}
+
+@Composable
+fun MyButton1() {
+
+    Button(onClick = { }, modifier = Modifier.width(720.dp)) {
         Text(
 
             text = "Hourly Weather"
@@ -80,71 +96,59 @@ fun myButton1() {
     }
 }
 @Composable
-fun myButton2() {
-    Button(onClick = {/*Handle click action */ }, ) {
+fun MyButton2() {
+    Button(onClick = { }, modifier = Modifier.width(720.dp)) {
         Text(
 
-            text = "Daily"
+            text = "Daily Weather"
         )
     }
 }
 
-
-
 @Composable
-fun weather() {
-        Column(){
+fun Weather() {
+    Column {
         Text(text = "50F wind NE at 10 mph. dew point is 40F")
-                }
-            }
-
-var h1 = "1. 50F wind NE at 10 mph. dew point is 40F."
-var h2 = "2. 51F Wind N at 5 mph. dew point is 42F."
-var h3 = "3. 54F Wind N at 3 mph. dew point is 44F."
-var h4 = "4. 55F Wind N at 1 mph. dew point is 46F."
-
-@Composable
-fun hourly() {
-        Column{
-            Text(text = "$h1")
-            Text(text = "$h2")
-            Text(text = "$h3")
-            Text(text = "$h4")
-        }
+    }
 }
 
-var d1 = "day 1. high of 55 low of 40"
-var d2 = "day 2. high of 54 low of 42"
-var d3 = "day 3. high of 60 low of 45"
-var d4 = "day 4. high of 50 low of 35"
+var h1 = "1. 50F wind NE at 10 mph. dew point is 40F."
+var h2 = "2. 51F wind N at 5 mph. dew point is 42F."
+var h3 = "3. 54F wind N at 3 mph. dew point is 44F."
+var h4 = "4. 55F wind N at 1 mph. dew point is 46F."
 
 @Composable
-fun daily() {
-    Column() {
-               Text(text = "$d1")
-               Text(text = "$d2")
-               Text(text = "$d3")
-               Text(text = "$d4")
+fun Hourly() {
+    Column {
+        Text(text = h1)
+        Text(text = h2)
+        Text(text = h3)
+        Text(text = h4)
+    }
+}
+
+var d1 = "1. Sunny, high of 55 low of 40"
+var d2 = "2. Sunny, high of 54 low of 42"
+var d3 = "3. Sunny, high of 60 low of 45"
+var d4 = "4. Sunny, high of 50 low of 35"
+
+@Composable
+fun Daily() {
+    Column {
+        Text(text = d1)
+        Text(text = d2)
+        Text(text = d3)
+        Text(text = d4)
     }
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun LightPreview() {
-    MyTheme() {
-        Surface() {
-            Column(modifier = Modifier.padding(16.dp)) {
-                MyApp()
-                myButton1()
-                Text(text = "")
-                Text(text = "hourly")
-                hourly()
-                Text(text = "")
-                myButton2()
-                Text(text = "")
-                Text(text = "daily")
-                daily()
-
+    MyTheme {
+        Surface {
+            Column {
+                MainApp()
             }
         }
     }
@@ -153,20 +157,10 @@ fun LightPreview() {
 @Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun DarkPreview() {
-    MyTheme() {
-        Surface() {
-            Column(modifier = Modifier.padding(16.dp)) {
-                MyApp()
-                myButton1()
-                Text(text = "")
-                Text(text = "hourly")
-                hourly()
-                Text(text = "")
-                myButton2()
-                Text(text = "")
-                Text(text = "daily")
-                daily()
-
+    MyTheme {
+        Surface {
+            Column {
+                MainApp()
             }
         }
     }
