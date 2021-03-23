@@ -16,17 +16,13 @@
 package com.example.androiddevchallenge
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,9 +33,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme() {
+                Surface() {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        MyApp()
+                        myButton1()
+                        Text(text = "")
+                        Text(text = "hourly")
+                        hourly()
+                        Text(text = "")
+                        myButton2()
+                        Text(text = "")
+                        Text(text = "daily")
+                        daily()
 
-                MyApp()
-
+                    }
+                }
             }
         }
     }
@@ -48,19 +56,41 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Column(modifier = Modifier.padding(16.dp)) {
+
+        Column() {
             Text(text = "Welcome to text weather!")
             Text(text = "Here is the weather for your location")
             Text(text = "current weather is ")
+            Text(text = "")
             weather()
-            Text(text = "hourly")
-            hourly()
-            Text(text = "daily")
-            daily()
+            Text(text = "")
         }
+
+ }
+
+@Composable
+fun myButton1() {
+
+
+    Button(onClick = {/*Handle click action */ },) {
+        Text(
+
+            text = "Hourly Weather"
+        )
     }
 }
+@Composable
+fun myButton2() {
+    Button(onClick = {/*Handle click action */ }, ) {
+        Text(
+
+            text = "Daily"
+        )
+    }
+}
+
+
+
 @Composable
 fun weather() {
         Column(){
@@ -101,18 +131,43 @@ fun daily() {
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun LightPreview() {
-    MyTheme {
-        MyApp()
+    MyTheme() {
+        Surface() {
+            Column(modifier = Modifier.padding(16.dp)) {
+                MyApp()
+                myButton1()
+                Text(text = "")
+                Text(text = "hourly")
+                hourly()
+                Text(text = "")
+                myButton2()
+                Text(text = "")
+                Text(text = "daily")
+                daily()
 
+            }
+        }
     }
 }
-
 
 @Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        MyApp()
+    MyTheme() {
+        Surface() {
+            Column(modifier = Modifier.padding(16.dp)) {
+                MyApp()
+                myButton1()
+                Text(text = "")
+                Text(text = "hourly")
+                hourly()
+                Text(text = "")
+                myButton2()
+                Text(text = "")
+                Text(text = "daily")
+                daily()
 
+            }
+        }
     }
 }
